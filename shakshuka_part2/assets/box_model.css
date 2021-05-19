@@ -6,6 +6,33 @@ body {
   background-color: #FEFFF1;
 }
 
+nav > ul > li{
+  display: inline-block;
+}
+
+a{
+  display: block;
+}
+
+a[href]{
+  padding: 20px;
+}
+header img{
+  float: left;
+  background: yellow;
+  height: 50px;
+  width: 75px;
+  margin: 20px;
+}
+
+img + nav{
+  float: right;
+  /* background: pink; */
+  width: 400px;
+  height: 100px;
+  margin: 10px;
+}
+
 h1 {
   font-size: 38px;
 }
