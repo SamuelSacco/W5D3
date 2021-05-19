@@ -1,3 +1,10 @@
+DROP TABLE IF EXISTS question_follows;
+DROP TABLE IF EXISTS question_likes;
+DROP TABLE IF EXISTS replies;
+DROP TABLE IF EXISTS questions;
+-- DROP TABLE IF EXISTS tags;**********
+DROP TABLE IF EXISTS users;
+
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE users (
@@ -10,7 +17,7 @@ CREATE TABLE questions (
     id INTEGER PRIMARY KEY,
     title TEXT NOT NULL,
     body TEXT NOT NULL,
-    author_id INTEGER NOT NULL
+    author_id INTEGER NOT NULL,
 
     FOREIGN KEY (author_id) REFERENCES users(id)
 );
@@ -18,9 +25,9 @@ CREATE TABLE questions (
 CREATE TABLE question_follows (
     id INTEGER PRIMARY KEY,
     question_id INTEGER NOT NULL,
-    user_id INTEGER NOT NULL
+    user_id INTEGER NOT NULL,
 
-    FOREIGN KEY (question_id) REFERENCES questions(id)
+    FOREIGN KEY (question_id) REFERENCES questions(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
@@ -32,17 +39,26 @@ CREATE TABLE replies (
     parent_reply_id INTEGER,
 
 
-    FOREIGN KEY (question_id) REFERENCES questions(id)
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (question_id) REFERENCES questions(id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (parent_reply_id) REFERENCES replies(id)
 );
 
+-- CREATE TABLE question_likes (
+--     id INTEGER PRIMARY KEY,
+--     upvotes INTEGER NOT NULL,
+--     question_follows_id INTEGER NOT NULL,
+
+--     FOREIGN KEY (question_follows_id) REFERENCES question_follows(id)
+-- );
+
 CREATE TABLE question_likes (
     id INTEGER PRIMARY KEY,
-    upvotes INTEGER NOT NULL,
-    question_follows_id INTEGER NOT NULL;
+    question_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
 
-    FOREIGN KEY (question_follows_id) REFERENCES question_follows(id)
+    FOREIGN KEY (question_id) REFERENCES questions(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 INSERT INTO
