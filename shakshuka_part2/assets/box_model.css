@@ -4,33 +4,36 @@ body {
   /* If the user cannot load the Arial font, the sans-serif font is used */
   font-family: Arial, sans-serif;
   background-color: #FEFFF1;
+  width: 900px;
+  margin: 0 auto;
+}
+
+section {
+  width: 700px;
+}
+
+aside {
+  width: 180px;
+}
+
+body > section, body > aside {
+  background-color: green;
 }
 
 nav > ul > li{
   display: inline-block;
 }
 
-a{
+a {
   display: block;
 }
 
-a[href]{
+a[href] {
   padding: 20px;
 }
-header img{
-  float: left;
-  background: yellow;
-  height: 50px;
-  width: 75px;
-  margin: 20px;
-}
 
-img + nav{
-  float: right;
-  /* background: pink; */
-  width: 400px;
-  height: 100px;
-  margin: 10px;
+header {
+  display: flex;
 }
 
 h1 {
